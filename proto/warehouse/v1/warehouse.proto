@@ -2,7 +2,7 @@ syntax ="proto3";
 
 package warehouse.v1;
 
-option go_package ="";
+option go_package ="github.com/Devskare/warehouse_proto/gen/go/warehouse/v1;warehousev1";
 
 import "google/protobuf/timestamp.proto";
 
@@ -28,6 +28,7 @@ message Product{
   double weight =3;
   google.protobuf.Timestamp delivery_date = 4;
   google.protobuf.Timestamp expire_date = 5;
+  string name = 6;
 }
 
 message Storage{
