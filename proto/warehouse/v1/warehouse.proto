@@ -1,0 +1,68 @@
+syntax ="proto3";
+
+package warehouse.v1;
+
+option go_package ="";
+
+import "google/protobuf/timestamp.proto";
+
+service Warehouse{
+  rpc AddProduct(AddProductRequest) returns (Empty);
+  rpc GetProduct(GetProductRequest) returns(Product);
+  rpc UpdateProduct(UpdateProductRequest) returns(Empty);
+  rpc DeleteProduct(DeleteProductRequest) returns(Empty);
+  rpc ExpireProduct(ExpireProductRequest) returns(Empty);
+  rpc ListProducts(Empty) returns(ListProductsResponse);
+
+
+  rpc AddStorage(AddStorageRequest) returns (Empty);
+  rpc ListStorages(Empty) returns (ListStoragesResponse);
+
+ }
+
+ message Empty{}
+
+message Product{
+  int64  article = 1;
+  int64 storage_id =2;
+  double weight =3;
+  google.protobuf.Timestamp delivery_date = 4;
+  google.protobuf.Timestamp expire_date = 5;
+}
+
+message Storage{
+  int64 id = 1;
+  double max_weight = 2;
+}
+
+message AddProductRequest {
+  Product product = 1;
+}
+
+message GetProductRequest {
+  int64 article = 1;
+}
+
+message ExpireProductRequest {
+  int64 article = 1;
+}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+}
+
+message AddStorageRequest {
+  double max_weight = 1;
+}
+
+message ListStoragesResponse {
+  repeated Storage storages = 1;
+}
+
+message UpdateProductRequest{
+  Product product = 1;
+}
+
+message DeleteProductRequest{
+  int64 article = 1;
+}
