@@ -34,6 +34,7 @@ message Product{
 message Storage{
   int64 id = 1;
   double max_weight = 2;
+  double current_weight = 3;
 }
 
 message AddProductRequest {
@@ -56,7 +57,7 @@ message AddStorageRequest {
   double max_weight = 1;
 }
 
-message ListStoragesResponse {
+message   ListStoragesResponse {
   repeated Storage storages = 1;
 }
 
